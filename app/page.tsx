@@ -203,8 +203,8 @@ export default function Home() {
 
     const cw = container.clientWidth;
     const ch = Math.min(
-      container.clientWidth * 0.75,
-      window.innerHeight * 0.55
+      container.clientWidth * 1.1,
+      window.innerHeight * 0.72
     );
     const dpr = window.devicePixelRatio;
     canvas.width = cw * dpr;
@@ -555,6 +555,33 @@ export default function Home() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [drawCanvas]);
+
+  // Native touch listeners with { passive: false } to prevent page scroll
+  const pointsRef = useRef(points);
+  pointsRef.current = points;
+  const draggingIdxRef = useRef(draggingIdx);
+  draggingIdxRef.current = draggingIdx;
+  const imageRef = useRef(image);
+  imageRef.current = image;
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const onTouchStart = (e: TouchEvent) => {
+      e.preventDefault();
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+    };
+
+    canvas.addEventListener("touchstart", onTouchStart, { passive: false });
+    canvas.addEventListener("touchmove", onTouchMove, { passive: false });
+    return () => {
+      canvas.removeEventListener("touchstart", onTouchStart);
+      canvas.removeEventListener("touchmove", onTouchMove);
+    };
+  }, [step, image]);
 
   // ─── Perspective correction ──────────────────────────────
   const runCorrection = useCallback(() => {
