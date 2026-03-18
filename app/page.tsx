@@ -753,7 +753,7 @@ export default function Home() {
     <main className="flex flex-col items-center min-h-screen px-3 py-4 max-w-2xl mx-auto">
       {/* Header */}
       <h1 className="text-xl font-bold tracking-tight mb-1 font-mono text-foreground">
-        PerspektivKor <span className="text-xs font-normal text-text-dim">v0.2</span>
+        PerspektivKor <span className="text-xs font-normal text-text-dim">v0.3</span>
       </h1>
       <p className="text-xs text-text-dim mb-4">
         Perspektivna korekcija fotografija
