@@ -203,8 +203,8 @@ export default function Home() {
 
     const cw = container.clientWidth;
     const ch = Math.min(
-      container.clientWidth * 1.1,
-      window.innerHeight * 0.72
+      container.clientWidth * 0.8,
+      window.innerHeight * 0.5
     );
     const dpr = window.devicePixelRatio;
     canvas.width = cw * dpr;
@@ -556,6 +556,14 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, [drawCanvas]);
 
+  // Lock body scroll when canvas is active (mobile)
+  useEffect(() => {
+    if (step >= 2 && step <= 3 && image) {
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = ""; };
+    }
+  }, [step, image]);
+
   // Native touch listeners with { passive: false } to prevent page scroll
   const pointsRef = useRef(points);
   pointsRef.current = points;
@@ -753,7 +761,7 @@ export default function Home() {
     <main className="flex flex-col items-center min-h-screen px-3 py-4 max-w-2xl mx-auto">
       {/* Header */}
       <h1 className="text-xl font-bold tracking-tight mb-1 font-mono text-foreground">
-        PerspektivKor <span className="text-xs font-normal text-text-dim">v0.4</span>
+        PerspektivKor <span className="text-xs font-normal text-text-dim">v0.5</span>
       </h1>
       <p className="text-xs text-text-dim mb-4">
         Perspektivna korekcija fotografija
