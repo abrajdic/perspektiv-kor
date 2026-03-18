@@ -509,8 +509,8 @@ export default function Home() {
     if (!pos) return;
     const { clientX, clientY } = pos;
 
-    // Dampened drag: 0.5x speed for precision
-    const DAMPEN = 0.5;
+    // Dampened drag: 0.25x speed for precision
+    const DAMPEN = 0.25;
     const t = getCanvasTransform()!;
 
     if (dragStartScreen.current && dragStartImg.current) {
@@ -753,7 +753,7 @@ export default function Home() {
     <main className="flex flex-col items-center min-h-screen px-3 py-4 max-w-2xl mx-auto">
       {/* Header */}
       <h1 className="text-xl font-bold tracking-tight mb-1 font-mono text-foreground">
-        PerspektivKor <span className="text-xs font-normal text-text-dim">v0.3</span>
+        PerspektivKor <span className="text-xs font-normal text-text-dim">v0.4</span>
       </h1>
       <p className="text-xs text-text-dim mb-4">
         Perspektivna korekcija fotografija
@@ -906,7 +906,7 @@ export default function Home() {
                 type="number"
                 value={width}
                 onChange={(e) => setWidth(e.target.value)}
-                placeholder="100"
+                placeholder="upisi dimenziju u cm"
                 className="w-full bg-surface-light text-foreground rounded-lg px-3 py-2.5 font-mono text-sm outline-none focus:ring-2 focus:ring-accent"
                 inputMode="decimal"
               />
@@ -922,7 +922,7 @@ export default function Home() {
                 type="number"
                 value={height}
                 onChange={(e) => setHeight(e.target.value)}
-                placeholder="70"
+                placeholder="upisi dimenziju u cm"
                 className="w-full bg-surface-light text-foreground rounded-lg px-3 py-2.5 font-mono text-sm outline-none focus:ring-2 focus:ring-accent"
                 inputMode="decimal"
               />
@@ -931,7 +931,7 @@ export default function Home() {
           <button
             onClick={runCorrection}
             disabled={!width || !height || processing}
-            className="w-full mt-4 py-3 bg-accent text-white rounded-lg font-medium text-sm hover:bg-accent-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="w-full mt-4 py-3 bg-success text-black rounded-lg font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {processing ? "Procesiranje..." : "Korigiraj perspektivu"}
           </button>
