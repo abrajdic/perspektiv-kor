@@ -496,7 +496,7 @@ export default function Home() {
     <main className="flex flex-col items-center h-[100dvh] overflow-hidden px-3 py-3 max-w-2xl mx-auto">
       {/* Header */}
       <h1 className="text-lg font-bold tracking-tight font-mono text-foreground">
-        PerspektivKor <span className="text-xs font-normal text-text-dim">v0.8</span>
+        PerspektivKor <span className="text-xs font-normal text-text-dim">v0.9</span>
       </h1>
 
       {/* Progress */}
@@ -517,7 +517,7 @@ export default function Home() {
       {/* Step 1 */}
       {step === 1 && (
         <div
-          className="w-full flex-1 flex flex-col items-center justify-center border-2 border-dashed border-surface-light rounded-xl cursor-pointer hover:border-accent transition-colors"
+          className="w-full flex flex-col items-center justify-center border-2 border-dashed border-surface-light rounded-xl p-10 cursor-pointer hover:border-accent transition-colors"
           onClick={() => fileInputRef.current?.click()}
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => { e.preventDefault(); const f = e.dataTransfer.files?.[0]; if (f?.type.startsWith("image/")) loadImage(f); }}
